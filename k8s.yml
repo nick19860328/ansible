@@ -1,0 +1,7 @@
+---
+- name:
+  hosts: k8s
+  become: yes
+  roles:
+    #- common
+    - haproxy

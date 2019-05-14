@@ -1,0 +1,9 @@
+---
+- name: nopasswd
+  hosts: k8s
+  become: yes
+  tasks:
+    - lineinfile:
+        path: /etc/sudoers
+        line: 'charles    ALL=(ALL:ALL) NOPASSWD:ALL'
+        create: yes

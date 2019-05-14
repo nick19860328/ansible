@@ -1,0 +1,10 @@
+---
+- name: install haproxy
+  apt: update_cache=yes name=haproxy state=latest
+
+- name: 
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  notify: restart haproxy
+
+- name: reload haproxy
+  service: name=haproxy state=reloaded

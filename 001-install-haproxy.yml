@@ -1,0 +1,16 @@
+---
+- name: 001-install-haproxy
+  hosts: k8s01, k8s02
+  become: yes
+  tasks:
+    - apt: 
+        update_cache: yes
+        name: haproxy
+        state: latest
+    - copy:
+        src: ./haproxy.cfg
+        dest: /home/charles
+    - shell: cat /home/charles/haproxy.cfg >> /etc/haproxy/haproxy.cfg
+    - systemd:
+        name: haproxy
+        state: reloaded
