@@ -1,0 +1,4 @@
+---
+# handlers file for 030-docker
+- name: restart docker
+  service: name=docker state=restarted

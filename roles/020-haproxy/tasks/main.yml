@@ -6,5 +6,5 @@
   template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
   notify: reload haproxy
 
-- name: reload haproxy
-  service: name=haproxy state=reloaded
+- name: start haproxy
+  service: name=haproxy state=started

@@ -3,22 +3,22 @@
   hosts: k8s
   become: yes
   roles:
-    - common
+    - 000-common
 
 - name:
   hosts: k8s01
   become: yes
   roles:
-    - keepalived-master
+    - 010-keepalived-master
 
 - name:
   hosts: k8s02
   become: yes
   roles:
-    - keepalived-backup
+    - 011-keepalived-backup
 
-#- name:
-#  hosts: k8s01,k8s02
-#  become: yes
-#  roles:
-#    - haproxy
+- name:
+  hosts: k8s01,k8s02
+  become: yes
+  roles:
+    - 020-haproxy
