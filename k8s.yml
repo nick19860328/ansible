@@ -22,3 +22,9 @@
   become: yes
   roles:
     - 020-haproxy
+
+#- name: 
+#  hosts: k8s
+#  become: yes
+#  roles:
+#    - 030-docker

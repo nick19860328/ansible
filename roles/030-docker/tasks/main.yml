@@ -1,23 +1,25 @@
 ---
-# tasks file for 030-docker
 - name:
-    apt: update_cache=yes name={{item}} state=latest
-    with_item:
-      - 'apt-transport-https'
-      - 'ca-certificates'
-      - 'curl'
-      - 'software-properties-common'
+  apt: 
+    update_cache: yes 
+    name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common'] 
+    state: latest
 
 - name:
-    apt_key: url=https://download.docker.com/linux/ubuntu/gpg
-    apt_repository: repo="https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu stable"
-    apt: update_cache=yes name=docker-ce=18.06.2~ce~3-0~ubuntu state=present
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+- name:
+  apt_repository: 
+    repo: deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu {{ansible_distribution_release}} stable
+- name:
+  apt: update_cache=yes name=docker-ce=18.06.2~ce~3-0~ubuntu state=present
 
 - name:
-    template: src=daemon.json.j2 dest=/etc/docker/daemon.json
-    file: path=/etc/systemd/system/docker.service.d state=directory
+  template: src=daemon.json.j2 dest=/etc/docker/daemon.json
+- name: 
+  file: path=/etc/systemd/system/docker.service.d state=directory
   notify: restart docker
 
 - name:
-    systemd: name=docker daemon-reload=yes
-    systemd: name=docker state=started
+  systemd: name=docker daemon-reload=yes
+- name:
+  service: name=docker state=started
