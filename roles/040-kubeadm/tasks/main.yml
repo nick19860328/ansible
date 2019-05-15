@@ -15,16 +15,16 @@
 
 - name: Add an apt signing key for Kubernetes
   apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    url: https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg
     state: present
 
- - name: Adding apt repository for Kubernetes
+- name: Adding apt repository for Kubernetes
   apt_repository:
-    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+    repo: deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
     state: present
     filename: kubernetes.list
 
- - name: Install Kubernetes binaries
+- name: Install Kubernetes binaries
   apt: 
     name: "{{ packages }}"
     state: present
@@ -35,12 +35,12 @@
       - kubeadm 
       - kubectl
 
- - name: Configure node ip
+- name: Configure node ip
   lineinfile:
     path: /etc/default/kubelet
     line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
 
- - name: Restart kubelet
+- name: Restart kubelet
   service:
     name: kubelet
     daemon_reload: yes
