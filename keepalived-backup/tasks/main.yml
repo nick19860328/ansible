@@ -1,0 +1,12 @@
+---
+# tasks file for keepalived-backup
+
+- name: install keepalived
+  apt: update_cache=yes name=keepalived state=latest
+
+- name: 
+  template: src=keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
+  notify: restart keepalived
+
+- name: restart keepalived
+  service: name=keepalived state=restarted

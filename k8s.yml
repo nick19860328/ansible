@@ -5,8 +5,8 @@
   roles:
     - common
 
-- name:
-  hosts: k8s01,k8s02
-  become: yes
-  roles:
-    - haproxy
+#- name:
+#  hosts: k8s01,k8s02
+#  become: yes
+#  roles:
+#    - haproxy
