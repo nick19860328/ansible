@@ -1,6 +1,6 @@
 vrrp_instance VI_1 {
     state MASTER
-    interface ens33
+    interface enp0s3
     virtual_router_id 51
     priority 200
     advert_int 1
@@ -9,6 +9,6 @@ vrrp_instance VI_1 {
         auth_pass thisismysupersecretpassword
     }
     virtual_ipaddress {
-        192.168.31.250
+        192.168.15.250
     }
 }

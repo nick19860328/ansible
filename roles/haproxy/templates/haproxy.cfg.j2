@@ -41,22 +41,22 @@ frontend http_front
 
 backend http_back
    balance roundrobin
-   server k8s01 192.168.31.70:80 check
-   server k8s01 192.168.31.232:80 check
+   server k8s01 192.168.15.5:80 check
+   server k8s02 192.168.15.6:80 check
 
-#frontend k8s-api
-#  bind 192.168.31.250:443
-#  bind 127.0.0.1:443
-#  mode tcp
-#  option tcplog
-#  default_backend k8s-api
+frontend k8s-api
+  bind 192.168.15.250:443
+  bind 127.0.0.1:443
+  mode tcp
+  option tcplog
+  default_backend k8s-api
 
-#backend k8s-api
-#  mode tcp
-#  option tcplog
-#  option tcp-check
-#  balance roundrobin
-#  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
-#  server k8s01 192.168.31.70:6443 check
-#  server k8s02 192.168.31.232:6443 check
-#  server k8s03 192.168.31.231:6443 check
+backend k8s-api
+  mode tcp
+  option tcplog
+  option tcp-check
+  balance roundrobin
+  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+  server k8s01 192.168.15.5:6443 check
+  server k8s02 192.168.15.6:6443 check
+  server k8s03 192.168.15.7:6443 check

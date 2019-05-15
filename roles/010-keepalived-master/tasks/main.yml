@@ -6,5 +6,5 @@
   template: src=keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
   notify: restart keepalived
 
-- name: restart keepalived
-  service: name=keepalived state=restarted
+- name: start keepalived
+  service: name=keepalived state=started
