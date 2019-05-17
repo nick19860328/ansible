@@ -27,15 +27,15 @@
     update_cache: yes
   vars:
     packages:
-      - docker-ce=18.06.2~ce~3-0~ubuntu
+      - docker-ce
       - docker-ce-cli 
       - containerd.io
   #notify:
   #  - docker status
-- name: Add user to docker group
-  user:
-    name: charles
-    group: docker
+#- name: Add user to docker group
+#  user:
+#    name: charles
+#    group: docker
 
 - name: 
   template: src=daemon.json.j2 dest=/etc/docker/daemon.json

@@ -6,13 +6,19 @@
 - name: Setup kubeconfig for vagrant user
   command: "{{ item }}"
   with_items:
-    - mkdir -p $HOME/.kube
-    - sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    - sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    - mkdir -p /home/charles/.kube
+    - cp -i /etc/kubernetes/admin.conf /home/charles/.kube/config
+    - chown charles:charles /home/charles/.kube/config
+#  args:
+#    warn: false
 
-- name: Install calico pod network
+#- name: Install calico pod network
+#  become: false
+#  command: kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+
+- name:
   become: false
-  command: kubectl create -f kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
+  command: kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
 
 - name: Generate join command
   command: kubeadm token create --print-join-command
@@ -23,4 +29,4 @@
 
 - name:
   become: false
-  comand: kubectl taint nodes --all node-role.kubernetes.io/master-
+  command: kubectl taint nodes --all node-role.kubernetes.io/master-
