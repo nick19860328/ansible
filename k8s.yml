@@ -34,3 +34,15 @@
   become: yes
   roles: 
     - 040-kubeadm
+
+- name:
+  hosts: k8s01
+  become: yes
+  roles:
+    - 050-k8s-master
+
+- name:
+  hosts: k8s02,k8s03
+  become: yes
+  roles:
+    - 051-k8s-node
