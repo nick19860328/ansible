@@ -1,7 +1,7 @@
 ---
 # handlers file for 030-docker
-#- name: restart docker
-#  service: name=docker state=restarted
+- name: restart docker
+  service: name=docker state=restarted
 
-- name: docker status
-  service: name=docker state=started
+#- name: docker status
+#  service: name=docker state=started

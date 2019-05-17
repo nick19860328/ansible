@@ -35,10 +35,10 @@
       - kubeadm 
       - kubectl
 
-- name: Configure node ip
-  lineinfile:
-    path: /etc/default/kubelet
-    line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
+#- name: Configure node ip
+#  lineinfile:
+#    path: /etc/default/kubelet
+#    line: KUBELET_EXTRA_ARGS=--node-ip=192.168.15.5
 
 - name: Restart kubelet
   service:
