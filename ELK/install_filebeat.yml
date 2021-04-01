@@ -12,6 +12,21 @@
   - name: Install Filebeat
     command: sudo dpkg -i filebeat.deb
   
-  - name: Edit the configuration
+  - name: Download the configuration
     get_url:
-      url: 
+      url: https://raw.githubusercontent.com/nick19860328/ansible/master/ELK/filebeat.yml
+      dest: /hoem/ops/filebeat.yml
+  
+  - name: Copy the configuration
+    copy:
+      src: /home/ops/filebeat.yml
+      dest: /etc/filebeat/filebeat.yml
+  
+  - name: Enable and configure the system module
+    command: sudo filebeat modules enable system
+  
+  - name: Start Filebeat
+    systemd:
+      name: filebeat
+      state: restarted
+      enabled: true
