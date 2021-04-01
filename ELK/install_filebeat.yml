@@ -1,0 +1,17 @@
+---
+- name: install_filebeat
+  host: all
+  become: true
+
+  tasks:
+
+  - name: Download Filebeat
+    get_url:
+      url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-amd64.deb
+      dest: /home/ops/filebeat.deb
+  - name: Install Filebeat
+    command: sudo dpkg -i filebeat.deb
+  
+  - name: Edit the configuration
+    get_url:
+      url: 
